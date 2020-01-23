@@ -9,6 +9,7 @@ import 'custom_icon_content.dart';
 enum Gender { male, female }
 int height = 150;
 int weight = 60;
+int age = 22;
 
 class InputPage extends StatefulWidget {
   @override
@@ -102,7 +103,8 @@ class _InputPageState extends State<InputPage> {
                         activeTrackColor: Colors.white,
                         inactiveTrackColor: Color(0xFF8D8E98),
                         thumbColor: Color(0xFFEB1555),
-                        thumbShape: RoundSliderThumbShape(enabledThumbRadius: 12),
+                        thumbShape:
+                            RoundSliderThumbShape(enabledThumbRadius: 12),
                         overlayColor: Color(0x3fEB1555),
                       ),
                       child: Slider(
@@ -134,13 +136,65 @@ class _InputPageState extends State<InputPage> {
                         children: <Widget>[
                           Text('WEIGHT', style: kSmallTextStyle),
                           Text(weight.toString(), style: kLargeTextStyle),
-                          FloatingActionButton(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onTap: () {
+                                  setState(() {
+                                    weight--;
+                                  });
+                                },
+                              ),
+                              SizedBox(width: 10),
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onTap: () {
+                                  setState(() {
+                                    weight++;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
                   ),
                   Expanded(
-                    child: CustomCard(color: kActiveCardColor),
+                    child: CustomCard(
+                      color: kActiveCardColor,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text('AGE', style: kSmallTextStyle),
+                          Text(age.toString(), style: kLargeTextStyle),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.minus,
+                                onTap: () {
+                                  setState(() {
+                                    age--;
+                                  });
+                                },
+                              ),
+                              SizedBox(width: 10),
+                              RoundIconButton(
+                                icon: FontAwesomeIcons.plus,
+                                onTap: () {
+                                  setState(() {
+                                    age++;
+                                  });
+                                },
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -154,6 +208,23 @@ class _InputPageState extends State<InputPage> {
           )
         ],
       ),
+    );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  RoundIconButton({@required this.onTap, @required this.icon});
+  final Function onTap;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      fillColor: Color(0xFF4C4F5E),
+      constraints: BoxConstraints.tightFor(height: 48, width: 48),
+      shape: CircleBorder(),
+      onPressed: this.onTap,
+      child: Icon(this.icon),
     );
   }
 }
