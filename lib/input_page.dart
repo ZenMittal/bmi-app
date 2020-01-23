@@ -7,6 +7,7 @@ import 'custom_card.dart';
 import 'custom_icon_content.dart';
 
 enum Gender { male, female }
+int height = 150;
 
 class InputPage extends StatefulWidget {
   @override
@@ -23,6 +24,8 @@ class _InputPageState extends State<InputPage> {
         title: Text('BMI CALCULATOR'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
             child: Row(
@@ -63,7 +66,46 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Expanded(
-            child: CustomCard(color: kActiveCardColor),
+            child: CustomCard(
+              color: kActiveCardColor,
+              child: Column(
+                children: <Widget>[
+                  SizedBox(height: 5),
+                  Text(
+                    'HEIGHT',
+                    style: kSmallTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    textBaseline: TextBaseline.alphabetic,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    children: <Widget>[
+                      Text(
+                        height.toString(),
+                        style: kLargeTextStyle,
+                      ),
+                      SizedBox(width: 2),
+                      Text(
+                        'cm',
+                        style: kSmallTextStyle,
+                      ),
+                    ],
+                  ),
+                  Slider(
+                    value: height.toDouble(),
+                    min: 120,
+                    max: 220,
+                    activeColor: Color(0xFFEB1555),
+                    inactiveColor: Color(0xFF8D8E98),
+                    onChanged: (double newValue) {
+                      setState(() {
+                        height = newValue.round();
+                      });
+                    },
+                  )
+                ],
+              ),
+            ),
           ),
           Expanded(
             child: Row(
