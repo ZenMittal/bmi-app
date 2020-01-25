@@ -15,3 +15,8 @@ const kLargeTextStyle = TextStyle(
   fontWeight: FontWeight.w900,
   fontSize: 50,
 );
+
+const kMedTextStyle = TextStyle(
+  fontWeight: FontWeight.bold,
+  fontSize: 25
+);

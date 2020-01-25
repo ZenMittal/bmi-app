@@ -211,7 +211,8 @@ class _InputPageState extends State<InputPage> {
               );
             },
             child: Container(
-              child: Text('CALCULATE'),
+              padding: EdgeInsets.only(bottom: 20),
+              child: Center(child: Text('CALCULATE', style: kMedTextStyle,)),
               margin: EdgeInsets.only(top: 10),
               color: kBottomColor,
               width: double.infinity,
