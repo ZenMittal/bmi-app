@@ -3,17 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:bmi_calculator/components/custom_card.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/components/bottom_button_bar.dart';
-import 'input_page.dart';
-
-Map<String, String> weight = {
-  'UNDERWEIGHT':
-      'Your weight is less than healthy amount. Love yourself more and eat more.',
-  'HEALTHY': 'Congratulations! Your body weight is healthy and normal',
-  'OVERWEIGHT':
-      'Your weight is more than healthy amount. Love yourself more and excercising more.'
-};
 
 class ResultPage extends StatelessWidget {
+  ResultPage(this.result);
+
+  final Map<String, String> result;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +36,7 @@ class ResultPage extends StatelessWidget {
                   children: <Widget>[
                     Center(
                       child: Text(
-                        'UNDERWEIGHT',
+                        result['result'],
                         style: TextStyle(
                             color: Color(0xFF24d876),
                             fontSize: 22,
@@ -50,14 +45,14 @@ class ResultPage extends StatelessWidget {
                     ),
                     Center(
                       child: Text(
-                        '20.3',
+                        result['bmi'],
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 80),
                       ),
                     ),
                     Center(
                       child: Text(
-                        weight['UNDERWEIGHT'],
+                        result['interpretation'],
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 20),
                       ),
@@ -67,7 +62,9 @@ class ResultPage extends StatelessWidget {
               ),
             ),
           ),
-          BottomButtonBar(text: 'RE-CALCULATE')
+          BottomButtonBar(text: 'RE-CALCULATE', onTap: (){
+            Navigator.pop(context);
+          },)
         ],
       ),
     );

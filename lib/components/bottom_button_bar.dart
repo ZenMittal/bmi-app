@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:bmi_calculator/constants.dart';
 
 class BottomButtonBar extends StatelessWidget {
-  BottomButtonBar({this.text, this.routePage});
+  BottomButtonBar({this.text, this.onTap});
 
   final String text;
-  final Widget routePage;
+  final Function onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +22,7 @@ class BottomButtonBar extends StatelessWidget {
           ),
         ),
       ),
-      onTap: () {
-        if (this.routePage == null) {
-          Navigator.pop(context);
-        } else {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) {
-              return this.routePage;
-            }),
-          );
-        }
-      },
+      onTap: this.onTap,
     );
   }
 }
