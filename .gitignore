@@ -28,6 +28,10 @@
 .pub/
 build/
 
+#Specific after addons
+keystore.jks
+key.properties
+
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
